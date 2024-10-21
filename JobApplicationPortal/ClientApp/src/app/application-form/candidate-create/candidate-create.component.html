@@ -1,0 +1,40 @@
+
+<div class="container">
+  <h2>Registration Form</h2>
+  <form id="candidateForm" (ngSubmit)="onSubmit(candidateForm)" #candidateForm="ngForm">
+    <div class="form-group">
+      <label for="cFirstname">First Name:</label>
+      <input type="text" id="cFirstname" name="cFirstname" required
+             [(ngModel)]="candidate.cFirstname" #cFirstname="ngModel">
+      <small *ngIf="cFirstname.invalid">First name is required</small>
+    </div>
+
+    <div class="form-group">
+      <label for="cLastname">Last Name:</label>
+      <input type="text" id="cLastname" name="cLastname" required
+             [(ngModel)]="candidate.cLastname" #cLastname="ngModel">
+      <small *ngIf="cLastname.invalid">Last name is required</small>
+    </div>
+
+    <div class="form-group">
+      <label for="cEmail">Email:</label>
+      <input type="email" id="cEmail" name="cEmail"
+             pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}"
+             placeholder="Enter your email" required
+             [(ngModel)]="candidate.cEmail" #cEmail="ngModel">
+      <small *ngIf="cEmail.invalid && cEmail.touched">Please enter a valid email address</small>
+    </div>
+
+    <div class="form-group">
+      <label for="cPhone">Phone Number:</label>
+      <input type="tel" id="cPhone" name="cPhone"
+             [(ngModel)]="candidate.cPhone"
+             (ngModelChange)="validatePhone()"
+             placeholder="Enter your phone number" required>
+      <small *ngIf="phoneError">{{ phoneError }}</small>
+    </div>
+
+    <button type="submit" [disabled]="candidateForm.invalid || phoneError">Create Candidate</button>
+  </form>
+</div>
+

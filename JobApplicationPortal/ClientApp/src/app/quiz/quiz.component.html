@@ -1,0 +1,59 @@
+<div *ngIf="isLoading">
+  <p>Loading questions...</p>
+</div>
+
+<div class="modal" *ngIf="showModal && !isLoading">
+  <div class="modal-content">
+    <h2 class="modal-title">Quiz Information</h2>
+    <p class="modal-description">This quiz consists of <strong>{{ quizs.length }} questions</strong>.</p>
+    <p>You will have <strong>{{ timePerQuestion }} seconds</strong> to answer each question.</p>
+    <button class="submit-btn" (click)="closeModal()">Submit</button>
+  </div>
+</div>
+
+<div class="quiz-container" *ngIf="!showModal && !quizCompleted && !isLoading">
+  <div class="quiz-header">
+    <h3>Question {{ currentQuestionIndex + 1 }} of {{ quizs.length }}</h3>
+  </div>
+  <hr>
+  <div class="question">
+    <h2>{{ currentQuestion?.questionText }}</h2>
+  </div>
+
+  <div class="options">
+    <div *ngFor="let option of currentQuestion?.options; let i = index">
+      <input type="radio" [id]="'option' + i" name="answer" [value]="option.answerId" (change)="currentQuestion ? selectAnswer(currentQuestion.questionId, option.answerId) : null">
+      <label [for]="'option' + i">{{ option.answerText }}</label>
+    </div>
+  </div>
+
+  <div class="timer-container">
+    <div class="timer-bar" [ngStyle]="{'width': (timeLeft / timePerQuestion) * 100 + '%'}"></div>
+  </div>
+
+  <div class="timer-count">
+    Time Left: <span>{{ timeLeft }}</span>s
+  </div>
+
+  <button class="next-btn" (click)="nextQuestion()">Next Question</button>
+</div>
+
+<div class="quiz-completed" *ngIf="quizCompleted && !isLoading">
+  <h2>Quiz Completed!</h2>
+  <p>Thank you for participating in the quiz.</p>
+
+  <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <label for="cvUpload">Upload your CV (PDF or DOCX, max 5MB):</label>
+    <input type="file" id="cvUpload" (change)="onFileChange($event)" accept=".pdf, .docx" required>
+
+    <button type="submit">Submit CV</button>
+  </form>
+
+  <div *ngIf="uploadSuccess" class="success-message">
+    CV uploaded successfully! You are redirecting to vacancies page...
+  </div>
+  <div *ngIf="uploadError" class="error-message">
+    {{ uploadError }}
+  </div>
+</div>
+

@@ -1,0 +1,72 @@
+.test-list-container {
+  margin: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.loading {
+  color: #007bff;
+}
+
+.error-message {
+  color: red;
+}
+
+.no-tests {
+  color: #888;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}
+
+  .btn-danger:hover {
+    background-color: darkred;
+  }
+
+.button-group {
+  display: flex; 
+  gap: 10px; 
+}
+
+.btn {
+  padding: 8px 12px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer; 
+  font-size: 14px;
+}
+
+.delete-btn {
+  background-color: #f44336; 
+  color: white; 
+}
+
+.update-btn {
+  background-color: #4CAF50;
+  color: white; 
+}
+
+.btn:hover {
+  opacity: 0.8;
+}

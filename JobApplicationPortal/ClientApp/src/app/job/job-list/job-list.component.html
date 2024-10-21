@@ -1,0 +1,31 @@
+<div class="row justify-content-center d-flex">
+  <!--<h2>Job List</h2>-->
+
+  <div class="col-lg-12 post-list">
+    <div *ngFor="let job of jobs" class="single-post d-flex flex-row">
+      <div class="details" style="margin-left:30px; width:auto;">
+        <div class="title d-flex flex-row justify-content-between">
+          <div class="titles">
+            <h4>{{job.jTitle}}</h4>
+          </div>
+        </div>
+        <hr>
+        <h4>
+          <strong>About job:</strong>
+        </h4>
+        <div [innerHTML]="job.jRequirements"></div>
+        <br>
+        <div style="display:flex; justify-content: space-between;">
+          <div></div>
+          <div style="text-align:right; margin-top: 15px">
+            <ul class="btns">
+              <li style="border-radius:10px">
+                <a [routerLink]="['/candidate-create', job.jId]">Müraciət et</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

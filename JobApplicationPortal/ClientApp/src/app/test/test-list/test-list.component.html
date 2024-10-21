@@ -1,0 +1,36 @@
+<base href="/">
+
+<div class="test-list-container">
+  <h2>Available Tests</h2>
+
+  <div *ngIf="isLoading" class="loading">Loading...</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <table *ngIf="!isLoading && tests.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Last Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let test of tests">
+        <td>{{ test.tName }}</td>
+        <td>{{ test.tDescription }}</td>
+        <td>{{ test.tUpdateDate }}</td>
+        <td>
+          <div class="button-group">
+            <button (click)="deleteTest(test.tId)" class="btn delete-btn">Delete</button>
+            <button (click)="navigateToUpdate(test.tId)" class="btn update-btn">Update</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!isLoading && tests.length === 0" class="no-tests">
+    No tests found.
+  </div>
+</div>

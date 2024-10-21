@@ -1,0 +1,42 @@
+<div class="test-form-container">
+  <h2>Update Test</h2>
+
+  <form (ngSubmit)="onSubmit()" #testForm="ngForm">
+    <div class="form-group">
+      <label for="tName">Test Name</label>
+      <input type="text"
+             id="tName"
+             [(ngModel)]="test.tName"
+             name="tName"
+             required
+             #tNameInput="ngModel"
+             class="form-control" />
+      <div *ngIf="tNameInput.invalid && tNameInput.touched" class="error-message">
+        Test Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tDescription">Description</label>
+      <textarea id="tDescription"
+                [(ngModel)]="test.tDescription"
+                name="tDescription"
+                required
+                #tDescriptionInput="ngModel"
+                class="form-control"></textarea>
+      <div *ngIf="tDescriptionInput.invalid && tDescriptionInput.touched" class="error-message">
+        Description is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tStatus">Status</label>
+      <select id="tStatus" [(ngModel)]="test.tStatus" name="tStatus" class="form-control">
+        <option [value]="true">Active</option>
+        <option [value]="false">Inactive</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="testForm.invalid">Update Test</button>
+  </form>
+</div>

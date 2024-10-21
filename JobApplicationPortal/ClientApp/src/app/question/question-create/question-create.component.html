@@ -1,0 +1,26 @@
+<!--<h2>Create Question</h2>
+<form [formGroup]="questionForm" (ngSubmit)="saveQuestion()">
+  <label for="questionText">Question Text:</label>
+  <input type="text" id="questionText" formControlName="question_text" required>
+
+  <label for="questionTestId">Select Test:</label>
+  <select id="questionTestId" formControlName="question_test_id" required>
+    <option *ngFor="let test of tests" [value]="test.t_id">{{ test.t_name }}</option>
+  </select>
+
+  <h3>Answers:</h3>
+  <div formArrayName="answers">
+    <div *ngFor="let answer of answers.controls; let i = index" [formGroupName]="i">
+      <label for="answerText{{i}}">Answer {{ i + 1 }}:</label>
+      <input type="text" id="answerText{{i}}" formControlName="answer_text" required>
+      <label>
+        <input type="checkbox" formControlName="is_correct"> Correct Answer
+      </label>
+      <button type="button" (click)="removeAnswer(i)">Remove Answer</button>
+    </div>
+  </div>
+  <button type="button" (click)="addAnswer()">Add Answer</button>
+
+  <button type="submit">Create Question</button>
+  <button type="button" (click)="router.navigate(['/admin/questions'])">Cancel</button>
+</form>-->
